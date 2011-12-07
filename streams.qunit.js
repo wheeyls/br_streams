@@ -95,8 +95,8 @@ $(document).ready(function() {
     equals(t.toArray, br_stream.toArray, "returns a stream object");
   });
   test("can create a functional list", function() {
-    var list = s.range(1,3).to_list();
-    
+    window.list = br_stream.make();
+    list.cons(1, list.cons(2, list.cons(3, list.make())));
     
   });
 });
