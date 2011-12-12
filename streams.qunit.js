@@ -30,7 +30,8 @@ $(document).ready(function() {
       res = [],
       exp = [1,2,3];
       
-    s.stream(function(val) {
+    x=s.stream(function(val) {
+      console.log("in");
       res.push(val);
       if(res.length === 3) {
         start();
@@ -77,6 +78,9 @@ $(document).ready(function() {
 
     equals(result, 6, "added up number");
   });
+  test("zip function", function(){
+
+  });
   test("can create a stream from a generator", function() {
     var ticks = function(time) {
       var me = generator.make(),
@@ -85,18 +89,20 @@ $(document).ready(function() {
       me.next = function() {
         var now = new Date();
         if(now-starting >= time) {
+          console.log("here");
           me.stop();
         }
         return now;
       };
       
       return me.to_stream();
-    }, t = ticks(2000);
+    }, 
+    t = ticks(2000);
     equals(t.toArray, br_stream.toArray, "returns a stream object");
   });
   test("can create a functional list", function() {
     window.list = br_stream.make();
-    list.cons(1, list.cons(2, list.cons(3, list.make())));
+    list=list.cons(1, list.cons(2, list.cons(3, list.make())));
     
   });
 });

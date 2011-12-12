@@ -44,14 +44,8 @@
     cons: function(head, tail) {
       return this.make(function(next) {
         next(head);
-        tail(next);
+        tail.stream(next);
       });
-    },
-    extend: function(orig, values) {
-      for(var i in values) {
-        if(values.hasOwnProperty(i))
-          console.log(i);
-      }
     },
     stream: null,
     make: function(stream) {
